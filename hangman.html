@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hangman</title>
+</head>
+
+<body>
+    <script type=text/javascript>
+    window.onload = function() {
+
+        var alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        var categories;
+        var chosenCategory;
+
+        var word;
+        var guess;
+        var guesses = [];
+        var lives;
+        var number;
+        var space;
+
+        var showLives = document.getElementById("mylives");
+        var showCategory = document.getElementById("showCategory");
+       
+
+        // Alphabet List
+
+          var buttons = function () {
+    buttons = document.getElementById('buttons');
+    letter = document.createElement('ul');
+
+    for (var i = 0; i < alphabet.length; i++) {
+      letter.id = 'alphabet';
+      list = document.createElement('li');
+      list.id = 'letter';
+      list.innerHTML = alphabet[i];
+      check();
+      buttons.appendChild(letter);
+      letter.appendChild(list);
+    }
+  }
+
+        // Categories
+
+        var selectCategory = function() {
+            if (chosenCategory === categories[0]) {
+                categoryName.innerHTML = "The Category is NFL Football Teams";
+            } else if (chosenCategory === categories[1]) {
+                categoryName.innerHTML = "The Category is Harry Potter Characters"
+            } else if (chosenCategory === categories[2]) {
+                categoryName.innerHTML = "The Category is College Football Teams Mascots (D1 Only)"
+            }
+        }
+
+        // Guesses
+
+        result = function() {
+            wordHolder = document.getElementById("hold");
+            correct = document.createElement("ul");
+
+            for (var i = 0; i < word.length; i++) {
+                correct.setAttribute("id", "my-word");
+                guess = document.createElement("li");
+                guess.setAttribute("class", "guess");
+                if (word[i] === "-") {
+                    guess.innerHTML = "-";
+                    space = 1;
+                } else {
+                    guess.innerHTML = "-";
+                }
+
+                guesses.push(guess);
+                wordHolder.appendChild(correct);
+                correct.appendChild(guess);
+            }
+        }
+
+       var animate = function () {
+        var drawMe = lives ;
+         }
+
+         drawMe++;
+         document.createElement ("stickman");
+         stickman.src = "Assets/Images/hangman"+showLives+".png";
+
+        // win/loss
+
+        comments = function() {
+            showLives.innerHTML = "You have " + lives + "lives";
+            if (lives < 1) {
+                showLives.innerHTML = "Game Over";
+            }
+
+            for (var i = 0; i < guesses.length; i++) {
+                if (number + space === guesses.length) {
+                    showLives.innerHTML = "You Win!"
+                }
+            }
+        }
+
+
+        // click function
+
+        check = function() {
+            list.onclick = function() {
+                var guess = (this.innerHTML);
+                this.setAttribute("class", "active");
+                this.onclick = null;
+                for (var i = 0; i < word.length; i++) {
+                    if (word[i] === guess) {
+                        guesses[i].innerHTML = guess;
+                        counter += 1;
+                    }
+                }
+                var j = (word.indexOf(guess));
+                if (j === -1) {
+                    lives -= 1;
+                    comments();
+                    animate();
+                } else {
+                    comments();
+                }
+            }
+        }
+
+
+        // categories/answers
+
+        play = function() {
+            categories = [
+                ["Green-Bay-Packers", "Tennessee-Titans", "New-York-Jets", "New-York-Giants",
+                    "Chicago-Bears", "Minnesota-Vikings", "Pittsburgh-Steelers", "New-England-Patriots", "Seattle-Seahawks", "Los-Angeles-Rams", "Los-Angeles-Chargers", "Arizona-Cardinals", "Dallas-Cowboys", "Houston-Texans", "Detroit-Lions", "Atlanta-Falcons", "Miami-Dolphins", "Denver-Broncos", "San-Francisco-Forty-Niners", "Philadelphia-Eagles", "Washington-Redskins", "Clevland-Browns", "Cincinnati-Bengals", "Buffalo-Bills", "Baltimore-Ravens", "Indianapolis-Colts", "Jacksonville-Jaguars", "Kansas-City-Chiefs", "Oakland-Raiders", "Carolina-Panthers", "New-Orleans-Saints", "Tampa-Bay-Buccaneers"
+                ],
+                ["Ron-Weasley", "Harry-Potter", "Hermione-Granger", "Remus-Lupin", "Albus-Dumbledore", "Voldemort", "Ginny-Weasley", "Tom-Riddle", "Belatrix-Lestrange", "Draco-Malfoy", "Charlie-Weasley", "George-Weasley", "Fred-Weasley", "Nymphadora-Tonks", "Mad-Eye-Moody", "Serverus-Snape", "Dudley-Dursley", "Bill-Weasley", "Fluer-Delacor", "Sirius-Black", "James-Potter", "Lily-Potter", "Wormtail"]
+                ["Aggies", "Volunteers", "Nittany-Lions", "Gamecocks", "Buckeyes", "Wildcats", "Rebels", "Cornhuskers", "Golden-Gophers", "Tigers", "Bulldogs", "Spartans", "Wildcats", "Wolverines", "Terrapins", "Hawkeyes", "Hoosiers", "Razorbacks", "Gators", "Crimson-Tide", "Longhorns", "Fighting-Illini", "Red-Raiders", "Horned-Frogs", "Trojans", "Utes", "Huskies", "Sooners", "Bruins", "Ducks", "Buffaloes", "Cowboys", "Jayhawks", "Golden-Bears"]
+            ]
+
+            play();
+
+            chosenCategory = categories[Math.floor(Math.random() *
+                categories.length)];
+            word = word.replace(/\s/g, "-");
+            console.log(word);
+            buttons();
+
+            guesses = [];
+            lives = 11;
+            number = 0;
+            space = 0;
+            result();
+            comments();
+            selectCategory();
+            canvas();
+        }
+
+
+
+        // reset
+
+        document.getElementById('reset').onclick = function() {
+            correct.parentNode.removeChild(correct);
+            letters.parentNode.removeChild(letters);
+            play();
+        }
+    }
+    </script>
+ 
+
+
+
