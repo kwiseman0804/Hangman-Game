@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Hangman Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+  </head>
+  <body>
+		
+		<audio id="harry">
+			<source src="Assets/sound/harry.mp3" type="audio/wav">
+		</audio>
+
+		<audio id="voldemort">
+			<source src="Assets/sound/voldemort.mp3" type="audio/wav">
+		</audio>
+
+
+  	<nav class="navbar navbar-default">
+  		<div class="container">
+  			<div class="navbar-header-center">
+					<h1>Hangman!</h1>
+				</div>
+				<div class="navbar-right">
+	    		
+	    	</div>
+	    </div>
+	   </nav>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12" align="center">
+					<h2>Can you Save Harry Potter? 
+					</h2>
+					<h5>Press a letter on the keyboard to get started </h5>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12" align="center">
+					<h3 id="letterSpot"></h3>
+
+					<br>
+
+					<form>
+						<p id="misses">Wrong Letters:</p>
+						<br>
+						<p id="guessesLeft">Remaining Guesses: 11</p>
+						<br>
+						<p id="win"></p>
+						<img src="Assets/Images/hangman0.png" id="hangman" height= "250" width="250">
+
+						<br>
+						<br>
+						<br>
+
+
+					</form>
+
+					<br>
+
+					<img src="Assets/Images/snitch.jpg" id="snitch" onClick="location.reload()" height="100" width="75">
+
+					<!-- <img src="assets/images/meeSeeks.jpeg" id="meeSeeks" onClick=meeSeeks.play()> -->
+
+					<p>Click the golden snitch to reset the game</p>
+
+				</div>
+			</div>
+		</div>	
+
+	<script src="hangman2.js">
+	</script>
+
+  </body>
+</html>
